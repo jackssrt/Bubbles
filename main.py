@@ -2,7 +2,7 @@ from tkinter import *
 HEIGHT = 500
 WIDTH = 800
 window = Tk()
-window.title('Stoppa bubblorna')
+window.title('Stop the bubbles')
 window.minsize(WIDTH, HEIGHT)
 window.maxsize(WIDTH, HEIGHT)
 c = Canvas(window, width=WIDTH, height=HEIGHT, bg='darkblue')
@@ -14,3 +14,18 @@ MID_X = WIDTH / 2
 MID_Y = HEIGHT / 2
 c.move(ship_id, MID_X, MID_Y)
 c.move(ship_id2, MID_X, MID_Y)
+SHIP_SPD = 10
+def move_ship(event):
+    if event.keysym == 'Up':
+        c.move(ship_id, 0, -SHIP_SPD)
+        c.move(ship_id2, 0, -SHIP_SPD)
+    elif event.keysym == 'Down':
+        c.move(ship_id, 0, SHIP_SPD)
+        c.move(ship_id2, 0, SHIP_SPD)
+    elif event.keysym == 'Left':
+        c.move(ship_id, -SHIP_SPD, 0)
+        c.move(ship_id2, -SHIP_SPD, 0)
+    elif event.keysym == 'Right':
+        c.move(ship_id, SHIP_SPD, 0)
+        c.move(ship_id2, SHIP_SPD, 0)
+c.bind_all('<Key>', move_ship)
